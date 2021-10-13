@@ -34,29 +34,40 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
+        key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
     );
   }
 
+  renderRowCell(cellInit) { 
+    let cells = [];
+      for (let r = cellInit; r < cellInit + 3 ; r++ ) 
+        cells.push(this.renderSquare(r));
+    return cells;
+  }
+
+  renderRow(cellInit) {
+    return (
+    <div className="board-row" key={cellInit}>
+      {this.renderRowCell(cellInit)}
+    </div>);
+  }
+
+  renderRows(){
+    let rows = [];
+    for( let rs = 0; rs < 3; rs++){
+       rows.push(this.renderRow(rs * 3));
+    }
+    return rows;
+  } 
+
   render() {
     return (
       <div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderRows()}
         </div>
       </div>
     );
@@ -109,7 +120,7 @@ class Game extends React.Component {
       return (
         <li key={move}>
           <button className="" onClick={() => this.jumpTo(move)}>
-          {move == this.state.stepNumber ? <b>{desc}</b> : desc}
+          {move === this.state.stepNumber ? <b>{desc}</b> : desc}
           </button>
         </li>
       );
