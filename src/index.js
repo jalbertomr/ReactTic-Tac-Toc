@@ -17,7 +17,7 @@ class Order extends React.Component{
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(){
+  handleClick= () => {
     this.setState(prevState =>({isAscending: !prevState.isAscending}));
     this.props.toReturnData();
   }
@@ -25,11 +25,8 @@ class Order extends React.Component{
   render() {
   return(
    <div className="checkbox_group">
-   <label>
-     <button type="checkbox" onClick={this.handleClick}>
-     {this.state.isAscending ? 'Descending Order' : 'Ascending Order'}
-     </button>
-   </label>
+     <input type="checkbox" onChange={this.handleClick}></input>
+     <label>Ascending</label>
    </div>
    )
   } 
