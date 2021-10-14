@@ -11,14 +11,7 @@ function Square(props) {
 }
 
 class Order extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {isAscending: true};
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   handleClick= () => {
-    this.setState(prevState =>({isAscending: !prevState.isAscending}));
     this.props.toReturnData();
   }
 
