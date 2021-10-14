@@ -10,19 +10,13 @@ function Square(props) {
   );
 }
 
-class Order extends React.Component{
-  handleClick= () => {
-    this.props.toReturnData();
-  }
-
-  render() {
+function Order(props){
   return(
    <div className="checkbox_group">
-     <input type="checkbox" onChange={this.handleClick}></input>
+     <input type="checkbox" onChange={props.toReturnData}></input>
      <label>Ascending</label>
    </div>
-   )
-  } 
+   );
 }
 
 function calculareWinner(squares) {
